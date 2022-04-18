@@ -34,4 +34,9 @@ class ModuleRepository
     {
         return Module::findOrFail($id)->delete();
     }
+
+    public function getmoduleByFacultyId()
+    {
+        return Module::where('faculty_id', request()->faculty)->get();    
+    }
 }

@@ -111,4 +111,9 @@ class ModuleController extends Controller
         }
         return redirect()->route('module.index')->with('success_message', 'Module Deleted Sussessfully');
     }
+
+    public function getmodule()
+    {
+        return response($this->moduleRepository->getmoduleByFacultyId());
+    }
 }

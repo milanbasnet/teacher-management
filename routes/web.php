@@ -25,8 +25,9 @@ Route::resources([
 ]);
 
 
-Route::get('/', function () {
-    return view('home');
-});
-
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profile/create', [HomeController::class, 'createProfile'])->name('profile.create');
+Route::post('/profile/store', [HomeController::class, 'storeProfile'])->name('profile.store');
+
+Route::post('/get-module', [ModuleController::class, 'getModule'])->name('get.module');
+Route::get('/export-csv', [HomeController::class, 'exportToCsv'])->name('export.csv');
