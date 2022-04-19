@@ -19,7 +19,7 @@ class HomeController extends Controller
     }
     public function index()
     {
-        $profiles = TeacherProfile::with('facultyName', 'moduleName')->orderBy('created_at', 'desc')->paginate(20);
+        $profiles = TeacherProfile::with('facultyName')->orderBy('created_at', 'desc')->paginate(20);
         return view('home', compact('profiles'));
     }
     public function createProfile()
@@ -45,6 +45,6 @@ class HomeController extends Controller
 
     public function exportToCsv()
     {
-        return Excel::download(new ProfileExport, 'profilelist.csv');
+        return Excel::download(new ProfileExport, 'profiles.csv');
     }
 }

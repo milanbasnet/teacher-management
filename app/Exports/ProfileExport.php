@@ -23,12 +23,17 @@ class ProfileExport implements FromCollection, WithHeadings
             'module'
         ];
     }
+    // public function map($user)
+    // {
+    //     return [
+    //         $user->gender == 1 ? 'Male' : 'Female',
+    //     ];
+    // }
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        // return TeacherProfile::all();
         return collect(TeacherProfile::getProfiles());
     }
 }

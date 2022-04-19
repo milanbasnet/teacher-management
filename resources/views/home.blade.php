@@ -4,8 +4,11 @@
 <div class="row">
   <div class="col-12">
       <div class="card">
-          <div class="card-header py-1">
+          <div class="card-header py-1 d-flex justify-content-between">
               <h4 class="card-title">Profile List</h4>
+              <a href="{{route('export.csv')}}" data-toggle="tooltip" data-placement="top" title="Export to csv">
+                <button type="button" class="btn btn-success">Export</button>
+              </a>
           </div>
           <div class="card-content">
               <div class="table-responsive">
@@ -22,7 +25,6 @@
                               <th>Date of Birth</th>
                               <th>Faculty</th>
                               <th>Module</th>
-                              <th>Action</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -43,12 +45,11 @@
                               <td> {{ $profile->nation }}</td>
                               <td> {{ $profile->dob->format('d M, Y') }}</td>
                               <td> {{ $profile->facultyName->name }}</td>
-                              <td> {{ $profile->moduleName->name }}</td>
-                              <td style="min-width: 150px">
-                                <a href="{{route('export.csv', $profile->id)}}" data-toggle="tooltip" data-placement="top" title="Export to csv">
-                                  <button type="button" class="btn btn-success">Export</button>
-                                </a>
-                              </td>
+                              <td> 
+                                  @foreach($profile->module as $key => $value)
+                                   {{$value['name'].','}}
+                                  @endforeach
+                                </td>
                           </tr>
                           @endforeach
                       </tbody>
